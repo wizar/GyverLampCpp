@@ -4,6 +4,7 @@
 #include "LocalDNS.h"
 #include "MqttClient.h"
 #include "LampWebServer.h"
+#include <vector>
 
 #include <ESPAsyncWebServer.h>
 

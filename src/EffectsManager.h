@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #define ARDUINOJSON_ENABLE_PROGMEM 1
 #include <ArduinoJson.h>
+#include <vector>
 
 #define effectsManager EffectsManager::instance()
 
