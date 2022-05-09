@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
     - master
+  workflow_dispatch:
 
 jobs:
   build:
@@ -99,19 +100,19 @@ jobs:
         name: artifacts
         path: artifacts
 
-    - name: Create release
-      if: github.ref == 'refs/heads/master'
-      run: |
-        set -x
-        assets=()
-        for asset in artifacts/*.bin; do
-          assets+=("-a" "$asset")
-        done
-        for asset in artifacts/*.zip; do
-          assets+=("-a" "$asset")
-        done
-        RELEASE_TAG="$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-        hub release create "${assets[@]}" -m "$RELEASE_TAG" "$RELEASE_TAG"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Create release
+    #   if: github.ref == 'refs/heads/master'
+    #   run: |
+    #     set -x
+    #     assets=()
+    #     for asset in artifacts/*.bin; do
+    #       assets+=("-a" "$asset")
+    #     done
+    #     for asset in artifacts/*.zip; do
+    #       assets+=("-a" "$asset")
+    #     done
+    #     RELEASE_TAG="$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+    #     hub release create "${assets[@]}" -m "$RELEASE_TAG" "$RELEASE_TAG"
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
